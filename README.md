@@ -6,7 +6,6 @@ This project aims to develop a responsive multi-vendor e-commerce website that a
 
 The website will be designed to provide a smooth and user-friendly experience across all devices, including mobile phones and desktop computers. The platform will also include vendor management, order tracking, and basic admin control to ensure efficient operation.
 
----
 
 ## Key Features
 
@@ -26,7 +25,6 @@ The website will be designed to provide a smooth and user-friendly experience ac
 - Admin control panel for vendor approval, commission management, and dispute resolution.
 - Analytics and reporting dashboard for monitoring sales, users, and platform performance.
 
----
 
 ## Technology/Framework
 
@@ -35,7 +33,6 @@ The website will be designed to provide a smooth and user-friendly experience ac
 - React for building a dynamic and responsive user interface.
 - Supabase or Firebase for backend services, including database management, user authentication, and real-time data handling.
 
----
 
 ## Project Timeline/Plan (10 Weeks)
 
