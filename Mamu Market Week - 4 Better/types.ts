@@ -1,6 +1,7 @@
 
 export interface Review {
   id: string;
+  userId?: string;
   userName: string;
   userAvatar?: string;
   rating: number;
@@ -32,6 +33,7 @@ export interface Product {
   vendorId: string;
   isNew: boolean;
   isSale: boolean;
+  dealType?: 'none' | 'flash' | 'daily' | 'weekly' | 'monthly';
   inStock: boolean;
   description: string;
   colors?: ColorVariant[];
@@ -56,26 +58,43 @@ export interface Category {
 export interface Vendor {
   id: string;
   name: string;
-  logo: string;
+  storeName?: string;
+  avatar?: string;
+  logo?: string;
   banner?: string;
   category: string;
-  rating: number;
-  productsCount: number;
-  verified: boolean;
-  joinedDate: string;
-  description: string;
+  rating?: number;
+  productsCount?: number;
+  verified?: boolean;
+  joinedDate?: string;
+  description?: string;
+  storeCity?: string;
+  socialFacebook?: string;
+  socialInstagram?: string;
+  socialYoutube?: string;
+  socialWhatsapp?: string;
 }
 
 export interface User {
   id: string;
   name: string;
   email: string;
-  role: 'customer' | 'vendor';
+  role: 'customer' | 'vendor' | 'admin';
   avatar?: string;
-}
-
-export type ViewType = 'home' | 'products' | 'product-details' | 'vendors' | 'vendor-store' | 'login' | 'vendor-login' | 'dashboard' | 'cart' | 'wishlist' | 'become-vendor' | 'deals' | 'deals-listing' | 'checkout-success' | 'settings' | 'order-history' | 'help-center' | 'about-us' | 'terms' | 'privacy' | 'return-policy' | 'seller-policy' | 'promote-item' | 'top-vendors';
-
-export interface CartItem extends Product {
-  quantity: number;
+  password?: string;
+  status?: string;
+  nickname?: string;
+  address?: string;
+  storeName?: string;
+  storeDescription?: string;
+  banner?: string;
+  nidTradeLicense?: string;
+  verified?: boolean;
+  storeCategory?: string;
+  storeCity?: string;
+  socialFacebook?: string;
+  socialInstagram?: string;
+  socialYoutube?: string;
+  socialWhatsapp?: string;
+  promotion_enabled?: boolean;
 }
