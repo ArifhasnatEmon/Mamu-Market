@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  
+  --color-brand-50: #F5F3FF;
+  --color-brand-100: #EDE9FE;
+  --color-brand-200: #DDD6FE;
+  --color-brand-300: #C4B5FD;
+  --color-brand-400: #A78BFA;
+  --color-brand-500: #8B5CF6;
+  --color-brand-600: #7C3AED;
+  --color-brand-700: #6D28D9;
+  --color-brand-800: #5B21B6;
+  --color-brand-900: #4C1D95;
+}
+
+:root {
+  --g-start: #6D28D9;
+  --g-mid: #7C3AED;
+  --g-end: #A855F7;
+  
+  --grad: linear-gradient(135deg, #6D28D9 0%, #7C3AED 45%, #A855F7 100%);
+  --grad-hover: linear-gradient(135deg, #5B21B6 0%, #6D28D9 45%, #7C3AED 100%);
+  --grad-text: linear-gradient(135deg, #6D28D9, #A855F7);
+  --grad-soft: linear-gradient(135deg, #F5F3FF 0%, #FAF5FF 100%);
+  --grad-success: linear-gradient(135deg, #059669 0%, #10B981 100%);
+  --grad-danger: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+  
+  --sh-btn: 0 4px 14px rgba(109,40,217,.35);
+  --sh-btn-hover: 0 8px 24px rgba(109,40,217,.45);
+  --sh-lg: 0 12px 40px rgba(109,40,217,.17);
+}
+
+@layer base {
+  body {
+    @apply bg-[#FAFAFF] text-[#111827] font-sans antialiased;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #E5E7EB;
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #DDD6FE;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/90 backdrop-blur-2xl;
+  }
+  
+  .gradient-primary {
+    background: var(--grad);
+    box-shadow: var(--sh-btn);
+  }
+  
+  .gradient-primary:hover {
+    background: var(--grad-hover);
+    box-shadow: var(--sh-btn-hover);
+  }
+
+  .text-gradient {
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-grad-soft {
+    background: var(--grad-soft);
+  }
+
+  .gradient-success {
+    background: var(--grad-success);
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+  }
+
+  .gradient-danger {
+    background: var(--grad-danger);
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25);
+  }
+
+  .inner-content-renderer h2 {
+    font-size: 16px;
+    font-weight: 800;
+    color: #7c3aed;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #f5f3ff, #fdf4ff);
+    border-left: 3px solid #7c3aed;
+    border-radius: 0 12px 12px 0;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    -webkit-text-fill-color: unset;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+  }
+
+  .inner-content-renderer h3 {
+    font-size: 15px;
+    font-weight: 800;
+    color: #111827;
+    margin-top: 20px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .inner-content-renderer h3::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: linear-gradient(135deg, #7c3aed, #ec4899);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .inner-content-renderer p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #6b7280;
+    margin-bottom: 14px;
+  }
+
+  .inner-content-renderer ul {
+    list-style-type: none;
+    margin-left: 0;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .inner-content-renderer li {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #6b7280;
+    padding: 10px 14px;
+    background: #f9fafb;
+    border-radius: 10px;
+    border: 1px solid #f3f4f6;
+    padding-left: 36px;
+    position: relative;
+  }
+
+  .inner-content-renderer li::before {
+    content: '✓';
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    font-weight: 900;
+    color: #7c3aed;
+  }
+
+  .inner-content-renderer strong {
+    font-weight: 800;
+    color: #111827;
+  }
+
+  .inner-content-renderer section {
+    background: #fff;
+    border: 1px solid #f3f4f6;
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+  }
+
+  .inner-content-renderer section h2 {
+    margin-top: 0;
+  }
+}
