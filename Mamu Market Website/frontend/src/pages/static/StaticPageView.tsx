@@ -10,7 +10,7 @@ const StaticPageView = ({ type }: { type: string }) => {
   if (type === 'help-center') return <HelpCenterView />;
 
   const STATIC_PAGE_META: Record<string, { icon: string; subtitle: string }> = {
-    'about-us': { icon: 'fa-building', subtitle: 'Learn about our mission, story, and the team behind Mamu Market.' },
+    'about-us': { icon: 'fa-building', subtitle: 'Empowering local entrepreneurs, accelerating digital commerce, and building trust across all 64 districts of Bangladesh.' },
     'return-policy': { icon: 'fa-undo', subtitle: 'Our return and refund guidelines to ensure a hassle-free experience.' },
     'seller-policy': { icon: 'fa-file-contract', subtitle: 'Rules and guidelines for selling on Mamu Market.' },
   };
@@ -32,7 +32,7 @@ const StaticPageView = ({ type }: { type: string }) => {
             <i className={`fas ${meta.icon} text-white text-xl`}></i>
           </div>
           <h1 className="text-[40px] font-[900] text-white mb-3 leading-tight tracking-tighter">{content.title}</h1>
-          {meta.subtitle && <p className="text-white/60 font-medium text-base max-w-lg leading-relaxed">{meta.subtitle}</p>}
+          {meta.subtitle && <p className="text-white/60 font-medium text-base max-w-2xl leading-relaxed">{meta.subtitle}</p>}
         </div>
       </div>
       {/* Content */}

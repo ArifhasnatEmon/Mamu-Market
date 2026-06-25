@@ -184,3 +184,87 @@
     margin-top: 0;
   }
 }
+
+/* Animated top line gradient */
+@keyframes footer-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animated-gradient-line {
+  background: linear-gradient(90deg, #7c3aed, #a855f7, #6366f1, #7c3aed);
+  background-size: 300% 300%;
+  animation: footer-gradient-shift 4s ease infinite;
+}
+
+/* 3% Opacity Noise Overlay */
+.footer-noise-overlay {
+  position: relative;
+}
+.footer-noise-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Glassy Header Badge style with subtle border & slight blur */
+.glass-header-badge {
+  background: rgba(167, 139, 250, 0.03);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(167, 139, 250, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+.glass-header-badge:hover {
+  background: rgba(167, 139, 250, 0.06);
+  border-color: rgba(167, 139, 250, 0.3);
+  box-shadow: 0 4px 25px rgba(124, 58, 237, 0.15);
+}
+
+/* Social icons custom gradient hover transition with purple glow */
+.social-circle-btn {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+.social-circle-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+.social-circle-btn:hover {
+  border-color: #a78bfa;
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.6);
+}
+.social-circle-btn:hover::before {
+  opacity: 1;
+}
+
+/* Vertical gradient divider between columns on desktop */
+.footer-divider-right {
+  position: relative;
+}
+@media (min-width: 1024px) {
+  .footer-divider-right::after {
+    content: '';
+    position: absolute;
+    right: -16px;
+    top: 10%;
+    height: 80%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(124, 58, 237, 0.2) 50%, transparent);
+  }
+}
+

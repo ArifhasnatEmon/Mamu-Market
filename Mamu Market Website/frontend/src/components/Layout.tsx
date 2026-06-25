@@ -829,120 +829,161 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
       {/* Footer */}
       {!hideFooter && (
-        <footer className="bg-[#111827] text-white pt-20 pb-10">
-          <div className="container mx-auto px-4">
-            <div className={user?.role === 'vendor' ? 'flex flex-col lg:flex-row gap-x-16 gap-y-12 mb-16' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-12 mb-16'}>
-              <div className={user?.role === 'vendor' ? 'lg:w-72 shrink-0 space-y-6' : 'lg:col-span-3 space-y-6'}>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-xl shadow-brand-500/10">
-                    <i className="fas fa-store"></i>
+        <footer className="relative bg-[#0f1117] text-white pt-[80px] pb-[40px] overflow-hidden footer-noise-overlay">
+          {/* Animated top gradient line (WOW element) */}
+          <div className="absolute top-0 left-0 right-0 h-[2px] animated-gradient-line z-10" />
+
+          {/* Ambient light glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[120px] bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18)_0%,transparent_70%)] pointer-events-none z-0" />
+
+          {/* 1px glowing divider border line */}
+          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#7c3aed]/50 to-transparent z-10" />
+
+          <div className="max-w-[1280px] mx-auto px-4 w-full relative z-10">
+            <div className="flex flex-col gap-12 lg:grid lg:grid-cols-12 lg:gap-8 mb-16">
+              
+              {/* Column 1: Brand */}
+              <div className="lg:col-span-3 space-y-6 footer-divider-right">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#7c3aed] to-[#a855f7] flex items-center justify-center text-white shadow-lg shrink-0">
+                    <i className="fas fa-store text-lg"></i>
                   </div>
-                  <div className="flex flex-col">
-                    <span className="text-3xl font-black tracking-tighter text-gradient">Mamu</span>
-                    <span className="text-[10px] font-black text-brand-300 tracking-[0.4em] uppercase">Market</span>
+                  <div className="flex flex-col text-left">
+                    <span className="text-3xl font-black tracking-tighter bg-gradient-to-r from-[#7c3aed] to-[#a855f7] bg-clip-text text-transparent leading-none">Mamu</span>
+                    <span className="text-[10px] font-black text-[#a78bfa] tracking-[0.25em] uppercase leading-none mt-1">MARKET</span>
                   </div>
                 </div>
-                <p className="text-gray-400 leading-relaxed text-base font-medium">
-                  Bangladesh's premier multi-vendor<br />marketplace since 2025.
+                <p className="text-[15px] text-[#9ca3af] leading-[1.7]">
+                  Bangladesh's premier multi-vendor marketplace since 2025.
                 </p>
                 <div className="flex gap-3">
-                  {['facebook', 'instagram', 'twitter', 'linkedin'].map(social => (
-                    <motion.button
-                      key={social}
-                      whileHover={{ y: -4, scale: 1.1 }}
-                      className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center hover:bg-brand-600 transition-all shadow-lg"
+                  {[
+                    { name: 'facebook', icon: 'fab fa-facebook-f', url: 'https://facebook.com' },
+                    { name: 'instagram', icon: 'fab fa-instagram', url: 'https://instagram.com' },
+                    { name: 'twitter', icon: 'fab fa-twitter', url: 'https://twitter.com' },
+                    { name: 'linkedin', icon: 'fab fa-linkedin-in', url: 'https://linkedin.com' }
+                  ].map(social => (
+                    <motion.a
+                      key={social.name}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{
+                        scale: 1.15,
+                        boxShadow: '0 0 20px rgba(124, 58, 237, 0.5)'
+                      }}
+                      transition={{ duration: 0.25, ease: 'easeInOut' }}
+                      className="w-10 h-10 rounded-full bg-[#1a1d2e] border border-[#2d2f45] flex items-center justify-center text-[#9ca3af] hover:text-white transition-colors duration-250 social-circle-btn"
                     >
-                      <i className={`fab fa-${social} text-lg`}></i>
-                    </motion.button>
+                      <i className={`${social.icon} text-lg`}></i>
+                    </motion.a>
                   ))}
                 </div>
               </div>
 
-              <div className={user?.role === 'vendor' ? 'flex-1' : 'lg:col-span-3'}>
-                <h3 className="text-[10px] font-black uppercase tracking-[0.2em] mb-6 text-brand-300">Quick Links</h3>
-                <ul className="space-y-3 text-gray-400 font-bold text-sm">
-                  <li><button onClick={() => handleNav('/about')} className="hover:text-white transition-colors flex items-center gap-2 group"><i className="fas fa-chevron-right text-[6px] opacity-0 group-hover:opacity-100 -ml-3 group-hover:ml-0 transition-all"></i> About Us</button></li>
-                  <li><button onClick={() => navigate(user?.role === 'vendor' ? '/vendor-support' : '/contact')} className="hover:text-white transition-colors flex items-center gap-2 group"><i className="fas fa-chevron-right text-[6px] opacity-0 group-hover:opacity-100 -ml-3 group-hover:ml-0 transition-all"></i> {user?.role === 'vendor' ? 'Vendor Support' : 'User Support'}</button></li>
-                  <li><button onClick={() => handleNav('/help-center')} className="hover:text-white transition-colors flex items-center gap-2 group"><i className="fas fa-chevron-right text-[6px] opacity-0 group-hover:opacity-100 -ml-3 group-hover:ml-0 transition-all"></i> Help & Support</button></li>
-                  {user?.role !== 'vendor' && (
-                    <>
-                      <li><button onClick={() => navigate('/terms')} className="hover:text-white transition-colors flex items-center gap-2 group"><i className="fas fa-chevron-right text-[6px] opacity-0 group-hover:opacity-100 -ml-3 group-hover:ml-0 transition-all"></i> Terms & Conditions</button></li>
-                      <li><button onClick={() => handleNav('/return-policy')} className="hover:text-white transition-colors flex items-center gap-2 group"><i className="fas fa-chevron-right text-[6px] opacity-0 group-hover:opacity-100 -ml-3 group-hover:ml-0 transition-all"></i> Return & Refund Policy</button></li>
-                    </>
-                  )}
+              {/* Column 2: Quick Links */}
+              <div className="lg:col-span-3 footer-divider-right">
+                <div className="inline-flex px-3 py-1.5 rounded-lg glass-header-badge mb-6">
+                  <h3 className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-[#a78bfa] leading-none">
+                    QUICK LINKS
+                  </h3>
+                </div>
+                <ul className="space-y-4">
+                  {[
+                    { label: 'About Us', action: () => handleNav('/about') },
+                    { label: 'Vendor Support', action: () => handleNav('/vendor-support') },
+                    { label: 'Help & Support', action: () => handleNav('/help-center') }
+                  ].map(link => (
+                    <li key={link.label}>
+                      <button
+                        onClick={link.action}
+                        className="flex items-center gap-1.5 text-[14px] font-semibold text-gray-400 hover:text-white transition-all duration-300 group text-left"
+                      >
+                        <span className="w-0 opacity-0 group-hover:w-3 group-hover:opacity-100 transition-all duration-300 ease-out text-[#a78bfa] flex items-center">
+                          <i className="fas fa-chevron-right text-[10px]"></i>
+                        </span>
+                        <span className="transform group-hover:translate-x-1.5 transition-transform duration-300 ease-out">
+                          {link.label}
+                        </span>
+                      </button>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
-              {/* ACCOUNT — vendor only */}
-              {user?.role === 'vendor' && (
-                <div className="flex-1">
-                  <h3 className="text-[10px] font-black uppercase tracking-[0.2em] mb-6 text-brand-300">My Account</h3>
-                  <ul className="space-y-3 text-gray-400 font-bold text-sm">
-                    <li><button onClick={() => { navigate('/settings'); }} className="hover:text-white transition-colors flex items-center gap-2 group"><i className="fas fa-chevron-right text-[6px] opacity-0 group-hover:opacity-100 -ml-3 group-hover:ml-0 transition-all"></i> Account Settings</button></li>
-                    <li><button onClick={() => { navigate('/messages'); }} className="hover:text-white transition-colors flex items-center gap-2 group"><i className="fas fa-chevron-right text-[6px] opacity-0 group-hover:opacity-100 -ml-3 group-hover:ml-0 transition-all"></i> Messages</button></li>
-                  </ul>
+              {/* Column 3: My Account */}
+              <div className="lg:col-span-3 footer-divider-right">
+                <div className="inline-flex px-3 py-1.5 rounded-lg glass-header-badge mb-6">
+                  <h3 className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-[#a78bfa] leading-none">
+                    MY ACCOUNT
+                  </h3>
                 </div>
-              )}
-
-              {/* ACCOUNT — hidden for vendor */}
-              {user?.role !== 'vendor' && (
-                <div className="lg:col-span-3">
-                  <h3 className="text-[10px] font-black uppercase tracking-[0.2em] mb-6 text-brand-300">Account</h3>
-                  <ul className="space-y-3 text-gray-400 font-bold text-sm">
-                    <li><button onClick={() => handleNav('/settings', true)} className="hover:text-white transition-colors flex items-center gap-2 group"><i className="fas fa-chevron-right text-[6px] opacity-0 group-hover:opacity-100 -ml-3 group-hover:ml-0 transition-all"></i> My Account</button></li>
-                    <li><button onClick={() => handleNav('/orders', true)} className="hover:text-white transition-colors flex items-center gap-2 group"><i className="fas fa-chevron-right text-[6px] opacity-0 group-hover:opacity-100 -ml-3 group-hover:ml-0 transition-all"></i> Order History</button></li>
-                    <li><button onClick={() => handleNav('/wishlist', true)} className="hover:text-white transition-colors flex items-center gap-2 group"><i className="fas fa-chevron-right text-[6px] opacity-0 group-hover:opacity-100 -ml-3 group-hover:ml-0 transition-all"></i> Wishlist</button></li>
-                    <li><button onClick={() => handleNav('/cart', true)} className="hover:text-white transition-colors flex items-center gap-2 group"><i className="fas fa-chevron-right text-[6px] opacity-0 group-hover:opacity-100 -ml-3 group-hover:ml-0 transition-all"></i> My Cart</button></li>
-                  </ul>
-                </div>
-              )}
-
-              {/* MERCHANT — hidden for vendor */}
-              {user?.role !== 'vendor' && (
-                <div className="lg:col-span-3">
-                  <h3 className="text-[10px] font-black uppercase tracking-[0.2em] mb-6 text-brand-300">Merchant</h3>
-                  <ul className="space-y-3 text-gray-400 font-bold text-sm">
-                    <li><button onClick={() => { navigate('/affiliate-program'); }} className="hover:text-white transition-colors flex items-center gap-2 group"><i className="fas fa-chevron-right text-[6px] opacity-0 group-hover:opacity-100 -ml-3 group-hover:ml-0 transition-all"></i> Affiliate Program</button></li>
-                    {!user && (
-                      <li><button onClick={() => { navigate('/vendor-login'); }} className="hover:text-white transition-colors flex items-center gap-2 group"><i className="fas fa-chevron-right text-[6px] opacity-0 group-hover:opacity-100 -ml-3 group-hover:ml-0 transition-all"></i> Vendor Login</button></li>
-                    )}
-                    <li><button onClick={() => handleNav('/seller-policy')} className="hover:text-white transition-colors flex items-center gap-2 group"><i className="fas fa-chevron-right text-[6px] opacity-0 group-hover:opacity-100 -ml-3 group-hover:ml-0 transition-all"></i> Seller Policies</button></li>
-                  </ul>
-                </div>
-              )}
-
-              {/* 4TH COLUMN — Merchant Tools for vendor */}
-              {user?.role === 'vendor' && (
-                <div className="flex-1">
-                  <h3 className="text-[10px] font-black uppercase tracking-[0.2em] mb-6 text-brand-300">Merchant Tools</h3>
-                  <div className="space-y-3">
-                    {[
-                      { label: 'My Dashboard', path: '/dashboard', icon: 'fa-store' },
-                      { label: 'My Store', path: `/vendors/${user.id}`, icon: 'fa-shop' },
-                      { label: 'Analytics', path: '/dashboard/analytics', icon: 'fa-chart-pie' },
-                      { label: 'Seller Policies', path: '/seller-policy', icon: 'fa-file-contract' },
-                    ].map(item => (
-                      <button key={item.label} onClick={() => { navigate(item.path); }} className="w-full text-left flex items-center gap-3 text-gray-400 hover:text-white transition-colors text-sm font-medium">
-                        <i className={`fas ${item.icon} text-brand-400 w-4`}></i> {item.label}
+                <ul className="space-y-4">
+                  {[
+                    { label: 'Account Settings', action: () => handleNav('/settings', true) },
+                    { label: 'Messages', action: () => handleNav('/messages', true) }
+                  ].map(link => (
+                    <li key={link.label}>
+                      <button
+                        onClick={link.action}
+                        className="flex items-center gap-1.5 text-[14px] font-semibold text-gray-400 hover:text-white transition-all duration-300 group text-left"
+                      >
+                        <span className="w-0 opacity-0 group-hover:w-3 group-hover:opacity-100 transition-all duration-300 ease-out text-[#a78bfa] flex items-center">
+                          <i className="fas fa-chevron-right text-[10px]"></i>
+                        </span>
+                        <span className="transform group-hover:translate-x-1.5 transition-transform duration-300 ease-out">
+                          {link.label}
+                        </span>
                       </button>
-                    ))}
-                  </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Column 4: Merchant Tools */}
+              <div className="lg:col-span-3">
+                <div className="inline-flex px-3 py-1.5 rounded-lg glass-header-badge mb-6">
+                  <h3 className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-[#a78bfa] leading-none">
+                    MERCHANT TOOLS
+                  </h3>
                 </div>
-              )}
+                <ul className="space-y-4">
+                  {[
+                    { label: 'My Dashboard', icon: 'fa-store', action: () => handleNav('/dashboard', true) },
+                    { label: 'My Store', icon: 'fa-shop', action: () => navigate(user?.role === 'vendor' ? `/vendors/${user.id}` : '/vendor-login') },
+                    { label: 'Analytics', icon: 'fa-chart-bar', action: () => handleNav('/dashboard/analytics', true) },
+                    { label: 'Seller Policies', icon: 'fa-file-alt', action: () => handleNav('/seller-policy') }
+                  ].map(item => (
+                    <li key={item.label}>
+                      <button
+                        onClick={item.action}
+                        className="flex items-center gap-2.5 text-[14px] font-semibold text-gray-400 hover:text-white transition-all duration-300 group text-left w-full"
+                      >
+                        <i className={`fas ${item.icon} text-[#a78bfa] text-[14px] w-5 flex-shrink-0 group-hover:scale-110 group-hover:text-white transition-all duration-300`}></i>
+                        <span className="transform group-hover:translate-x-1.5 transition-transform duration-300 ease-out">
+                          {item.label}
+                        </span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
             </div>
 
-            <div className="border-t border-gray-800 pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
-              <p>© {new Date().getFullYear()} MAMU MARKET INC</p>
-              <div className="flex gap-8">
-                {user?.role !== 'vendor' && (
-                  <>
-                    <button onClick={() => handleNav('/privacy')} className="hover:text-white transition-colors">Privacy</button>
-                    <button onClick={() => handleNav('/terms')} className="hover:text-white transition-colors">Terms</button>
-                  </>
-                )}
-                <button className="hover:text-white transition-colors">Cookies</button>
-              </div>
+            {/* Bottom Bar */}
+            <div className="border-t border-[#1f2937] pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+              <p className="text-[10px] font-bold tracking-widest text-[#4b5563] uppercase" style={{ fontVariant: 'all-small-caps' }}>
+                © 2026 MAMU MARKET INC
+              </p>
+              <button 
+                className="text-[10px] font-bold tracking-widest text-[#4b5563] hover:text-white transition-colors duration-300 uppercase" 
+                style={{ fontVariant: 'all-small-caps' }}
+              >
+                Cookies
+              </button>
             </div>
+
           </div>
         </footer>
       )}

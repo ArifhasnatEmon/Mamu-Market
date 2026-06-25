@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useAuth } from '../../context/AuthContext';
 import PageTitle from '../../components/PageTitle';
 
 const CUSTOMER_FAQS = [
   { id: 'shipping', category: 'Shipping & Delivery', icon: 'fa-truck', color: 'blue', items: [
-    { q: 'How long does delivery take?', a: 'Inside Dhaka: 1–2 business days. Outside Dhaka: 3–5 business days. Remote areas may take 5–7 business days.' },
+    { q: 'How long does delivery take?', a: 'Inside Dhaka: 1–2 business days. Outside Dhaka: 3–5 business days. Remote areas may take 5–7 business days.', popular: true },
     { q: 'How much is the shipping fee?', a: 'Orders above ৳10,000 get free delivery. Orders ৳500–৳9,999 incur a ৳120 fee. Orders below ৳500 incur an ৳80 fee.' },
-    { q: 'How do I track my order?', a: 'Log in and go to My Orders to see the current status of every order.' },
+    { q: 'How do I track my order?', a: 'Log in and go to My Orders to see the current status of every order.', popular: true },
   ]},
   { id: 'returns', category: 'Returns & Refunds', icon: 'fa-undo', color: 'rose', items: [
-    { q: 'How many days do I have to return a product?', a: 'You can return most items within 7 days of receiving them. The product must be unused and in its original packaging.' },
+    { q: 'How many days do I have to return a product?', a: 'You can return most items within 7 days of receiving them. The product must be unused and in its original packaging.', popular: true },
     { q: 'How will I receive my refund?', a: 'Once approved, the refund is sent to your original payment method (bKash, Nagad, or bank) within 5–7 business days.' },
     { q: 'What items cannot be returned?', a: 'Perishable goods, personal care items, and products with broken seals cannot be returned.' },
   ]},
   { id: 'payment', category: 'Payments & MFS', icon: 'fa-mobile-alt', color: 'emerald', items: [
-    { q: 'Which payment methods are accepted?', a: 'We accept bKash, Nagad, Rocket, debit/credit cards, and Cash on Delivery (COD) nationwide.' },
+    { q: 'Which payment methods are accepted?', a: 'We accept bKash, Nagad, Rocket, debit/credit cards, and Cash on Delivery (COD) nationwide.', popular: true },
     { q: 'How do I pay with bKash?', a: 'At checkout, select bKash, enter your number and confirm with your PIN. Payment is confirmed instantly.' },
     { q: 'Is Cash on Delivery available?', a: 'Yes, COD is available across all of Bangladesh. Please have the exact amount ready when your delivery arrives.' },
     { q: 'My bKash payment failed but money was deducted. What do I do?', a: 'Contact us within 24 hours with your transaction ID. We will reconcile it within 2–3 business days.' },
@@ -28,39 +28,38 @@ const CUSTOMER_FAQS = [
   ]},
   { id: 'orders', category: 'Order Issues', icon: 'fa-box', color: 'purple', items: [
     { q: 'Can I cancel an order?', a: 'You can cancel an order while it is still in "Processing" status. Go to My Orders and select the order to cancel.' },
-    { q: 'I received the wrong product. What should I do?', a: 'Contact us within 48 hours with a photo of the product. We will resolve it promptly.' },
+    { q: 'I received the wrong product. What should I do?', a: 'Contact us within 48 hours with a photo of the product. We will resolve it promptly.', popular: true },
     { q: 'My order is late. What should I do?', a: 'Check your order status in My Orders first. If it has been more than 7 days, contact our support team.' },
   ]},
 ];
 
 const VENDOR_FAQS = [
   { id: 'payouts', category: 'Payouts & Fees', icon: 'fa-money-bill-wave', color: 'emerald', items: [
-    { q: 'When do I receive my payout?', a: 'Payouts are processed weekly for completed orders past the 7-day return window. Funds are sent to your designated bKash, Nagad, or bank account.' },
+    { q: 'When do I receive my payout?', a: 'Payouts are processed weekly for completed orders past the 7-day return window. Funds are sent to your designated bKash, Nagad, or bank account.', popular: true },
     { q: 'What is the commission fee?', a: 'We charge a standard platform fee on successful sales. Please refer to your Seller Agreement for specific percentage details based on your category.' },
     { q: 'Why is my payout delayed?', a: 'Payouts may be delayed if there is an active customer dispute or if your banking details are incomplete. Please verify your settings.' },
   ]},
   { id: 'products', category: 'Products & Inventory', icon: 'fa-box-open', color: 'blue', items: [
-    { q: 'How do I upload a product?', a: 'Go to Dashboard → Add Product, fill in the details, images, and price. The product goes live after a brief admin review.' },
+    { q: 'How do I upload a product?', a: 'Go to Dashboard → Add Product, fill in the details, images, and price. The product goes live after a brief admin review.', popular: true },
     { q: 'Why was my product rejected?', a: 'Products are usually rejected for blurry images, prohibited items, or misleading descriptions. Check your registered email for the specific reason.' },
     { q: 'How do I update my stock?', a: 'Go to Dashboard → Inventory to quickly adjust stock levels or mark items as out of stock.' },
   ]},
   { id: 'orders', category: 'Order Management', icon: 'fa-truck', color: 'purple', items: [
-    { q: 'How do I manage incoming orders?', a: 'Go to Dashboard → My Orders. You can review items, approve cancellations, and mark orders as Shipped once dispatched.' },
+    { q: 'How do I manage incoming orders?', a: 'Go to Dashboard → My Orders. You can review items, approve cancellations, and mark orders as Shipped once dispatched.', popular: true },
     { q: 'What happens if a customer cancels?', a: 'If a customer requests cancellation before you ship, you will be notified to review and approve the cancellation.' },
   ]},
   { id: 'account', category: 'Store & Verification', icon: 'fa-store', color: 'amber', items: [
-    { q: 'How do I verify my store?', a: 'Complete your profile in Store Settings and upload your Trade License or NID. Verification takes 1-2 business days.' },
+    { q: 'How do I verify my store?', a: 'Complete your profile in Store Settings and upload your Trade License or NID. Verification takes 1-2 business days.', popular: true },
     { q: 'How do I become an Official Store?', a: 'Official status is granted to registered brands and top-performing vendors. Maintain a high rating and low dispute rate to qualify.' },
   ]},
 ];
 
 const COLOR_MAP: Record<string, string> = {
-  blue: 'bg-blue-50 text-blue-600',
-  rose: 'bg-rose-50 text-rose-600',
-  emerald: 'bg-emerald-50 text-emerald-600',
-  amber: 'bg-amber-50 text-amber-600',
-  indigo: 'bg-indigo-50 text-indigo-600',
-  purple: 'bg-purple-50 text-purple-600',
+  blue: 'bg-gradient-to-br from-blue-500 to-indigo-600 shadow-blue-500/20 text-white',
+  rose: 'bg-gradient-to-br from-rose-500 to-pink-600 shadow-rose-500/20 text-white',
+  emerald: 'bg-gradient-to-br from-emerald-500 to-teal-600 shadow-emerald-500/20 text-white',
+  amber: 'bg-gradient-to-br from-amber-500 to-orange-600 shadow-amber-500/20 text-white',
+  purple: 'bg-gradient-to-br from-purple-500 to-indigo-600 shadow-purple-500/20 text-white',
 };
 
 const HelpCenterView: React.FC = () => {
@@ -118,16 +117,74 @@ const HelpCenterView: React.FC = () => {
       </div>
 
       <div className="max-w-[860px] mx-auto px-4 -mt-10 relative z-20">
+        
+        {/* Quick Actions Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+          <div 
+            onClick={() => navigate(user?.role === 'vendor' ? '/dashboard' : '/orders')} 
+            className="p-5 bg-white rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-lg transition-all cursor-pointer flex items-center gap-4 group"
+          >
+            <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm">
+              <i className="fas fa-route text-lg"></i>
+            </div>
+            <div>
+              <h4 className="font-extrabold text-gray-900 text-sm mb-0.5">Track Order</h4>
+              <p className="text-[11px] text-gray-500 font-medium leading-none">View order shipping status</p>
+            </div>
+          </div>
+
+          <div 
+            onClick={() => navigate('/return-policy')} 
+            className="p-5 bg-white rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-lg transition-all cursor-pointer flex items-center gap-4 group"
+          >
+            <div className="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 group-hover:bg-rose-600 group-hover:text-white transition-all shadow-sm">
+              <i className="fas fa-undo text-lg"></i>
+            </div>
+            <div>
+              <h4 className="font-extrabold text-gray-900 text-sm mb-0.5">Return Request</h4>
+              <p className="text-[11px] text-gray-500 font-medium leading-none">Learn how to return items</p>
+            </div>
+          </div>
+
+          <div 
+            onClick={() => {
+              const el = document.getElementById('contact-box');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }} 
+            className="p-5 bg-white rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-lg transition-all cursor-pointer flex items-center gap-4 group"
+          >
+            <div className="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 group-hover:bg-purple-600 group-hover:text-white transition-all shadow-sm">
+              <i className="fas fa-headset text-lg"></i>
+            </div>
+            <div>
+              <h4 className="font-extrabold text-gray-900 text-sm mb-0.5">Contact Support</h4>
+              <p className="text-[11px] text-gray-500 font-medium leading-none">Talk to our service team</p>
+            </div>
+          </div>
+        </div>
+
         <div className="bg-white rounded-[24px] p-8 md:p-14 shadow-[0_2px_32px_rgba(0,0,0,0.10)]">
 
-
+          {/* Emergency Support Strip */}
+          <div className="mb-8 p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-rose-500/5 to-transparent border border-amber-500/20 flex items-center gap-3.5">
+            <div className="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0 animate-pulse">
+              <i className="fas fa-bell text-sm"></i>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[10px] font-black text-amber-800 uppercase tracking-widest leading-none mb-1">Emergency Support Hotline</p>
+              <p className="text-[11px] text-gray-600 font-bold truncate">Have an urgent transaction failure or order issue? Call +880 1700-000000 (9 AM - 10 PM)</p>
+            </div>
+            <a href="tel:+8801700000000" className="hidden sm:inline-flex px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white font-black text-[10px] uppercase tracking-widest rounded-lg transition-all shrink-0">
+              Call Now
+            </a>
+          </div>
 
           {/* Category chips */}
           {!search && (
             <div className="flex flex-wrap gap-2 mb-8">
               <button
                 onClick={() => setActiveCategory(null)}
-                className={`px-4 py-2 rounded-xl text-xs font-black transition-all border-2 ${activeCategory === null ? 'bg-brand-600 text-white border-brand-600' : 'bg-gray-50 text-gray-500 border-gray-100 hover:border-brand-300'}`}
+                className={`px-4 py-2 rounded-xl text-xs font-black transition-all border-2 ${activeCategory === null ? 'bg-brand-600 text-white border-brand-600 shadow-md shadow-brand-500/20' : 'bg-gray-50 text-gray-500 border-gray-100 hover:border-brand-300'}`}
               >
                 All Topics
               </button>
@@ -135,7 +192,7 @@ const HelpCenterView: React.FC = () => {
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(activeCategory === cat.id ? null : cat.id)}
-                  className={`px-4 py-2 rounded-xl text-xs font-black transition-all border-2 ${activeCategory === cat.id ? 'bg-brand-600 text-white border-brand-600' : 'bg-gray-50 text-gray-500 border-gray-100 hover:border-brand-300'}`}
+                  className={`px-4 py-2 rounded-xl text-xs font-black transition-all border-2 ${activeCategory === cat.id ? 'bg-brand-600 text-white border-brand-600 shadow-md shadow-brand-500/20' : 'bg-gray-50 text-gray-500 border-gray-100 hover:border-brand-300'}`}
                 >
                   <i className={`fas ${cat.icon} mr-1.5`}></i>{cat.category}
                 </button>
@@ -154,30 +211,52 @@ const HelpCenterView: React.FC = () => {
           <div className="space-y-8">
             {filtered.map(cat => cat.items.length > 0 && (
               <div key={cat.id}>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${COLOR_MAP[cat.color]}`}>
-                    <i className={`fas ${cat.icon} text-sm`}></i>
+                
+                {/* Custom Gradient Icon Header */}
+                <div className="flex items-center gap-3.5 mb-4">
+                  <div className={`w-10 h-10 rounded-2xl flex items-center justify-center shadow-md ${COLOR_MAP[cat.color] || 'bg-brand-600 text-white'}`}>
+                    <i className={`fas ${cat.icon} text-base`}></i>
                   </div>
-                  <h2 className="font-black text-gray-900 text-lg">{cat.category}</h2>
+                  <h2 className="font-black text-gray-900 text-lg tracking-tight">{cat.category}</h2>
                 </div>
-                <div className="space-y-2">
-                  {cat.items.map((item, i) => {
+
+                <div className="space-y-2.5">
+                  {cat.items.map((item: any, i) => {
                     const key = `${cat.id}-${i}`;
                     const isOpen = openItem === key;
                     return (
-                      <div key={i} className="border border-gray-100 rounded-2xl overflow-hidden">
+                      <div key={i} className="border border-gray-100 rounded-2xl overflow-hidden bg-white shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
                         <button
                           onClick={() => setOpenItem(isOpen ? null : key)}
-                          className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 transition-all"
+                          className="w-full flex items-center justify-between px-6 py-4.5 text-left hover:bg-gray-50/50 transition-all"
                         >
-                          <span className="font-bold text-gray-800 text-sm pr-4">{item.q}</span>
-                          <i className={`fas fa-chevron-down text-gray-300 text-xs transition-transform shrink-0 ${isOpen ? 'rotate-180' : ''}`}></i>
+                          <span className="font-bold text-gray-800 text-[14px] pr-4 flex items-center gap-2">
+                            {item.q}
+                            {item.popular && (
+                              <span className="bg-purple-100 text-purple-600 text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0 flex items-center gap-1">
+                                <i className="fas fa-fire text-[7px]"></i>Popular
+                              </span>
+                            )}
+                          </span>
+                          <i className={`fas fa-chevron-down text-gray-300 text-[10px] transition-transform shrink-0 ${isOpen ? 'rotate-180 text-brand-500' : ''}`}></i>
                         </button>
-                        {isOpen && (
-                          <div className="px-6 pb-4 text-sm text-gray-500 font-medium leading-relaxed border-t border-gray-50">
-                            <div className="pt-3">{item.a}</div>
-                          </div>
-                        )}
+                        
+                        {/* Smooth Motion Accordion Animation */}
+                        <AnimatePresence initial={false}>
+                          {isOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.2, ease: 'easeInOut' }}
+                              className="overflow-hidden border-t border-gray-50 bg-gray-50/20"
+                            >
+                              <div className="px-6 py-4 text-sm text-gray-500 font-medium leading-relaxed">
+                                {item.a}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </div>
                     );
                   })}
@@ -196,7 +275,7 @@ const HelpCenterView: React.FC = () => {
           </div>
 
           {/* Contact box */}
-          <div className={`border rounded-2xl p-8 mt-10 flex flex-col md:flex-row items-center justify-between gap-6 ${user?.role === 'vendor' ? 'bg-indigo-50 border-indigo-100' : 'bg-brand-50 border-brand-100'}`}>
+          <div id="contact-box" className={`border rounded-2xl p-8 mt-10 flex flex-col md:flex-row items-center justify-between gap-6 ${user?.role === 'vendor' ? 'bg-indigo-50 border-indigo-100' : 'bg-brand-50 border-brand-100'}`}>
             <div className="flex items-center gap-6">
               <div className={`w-14 h-14 text-white rounded-2xl flex items-center justify-center shrink-0 shadow-lg ${user?.role === 'vendor' ? 'bg-indigo-600 shadow-indigo-500/20' : 'bg-brand-600 shadow-brand-500/20'}`}>
                 <i className={`fas ${user?.role === 'vendor' ? 'fa-store' : 'fa-headset'} text-2xl`}></i>

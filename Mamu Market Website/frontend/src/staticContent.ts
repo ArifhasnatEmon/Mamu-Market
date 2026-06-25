@@ -2,50 +2,181 @@ export const STATIC_CONTENT = {
   'about-us': {
     title: 'About Mamu Market',
     content: `
-      <div class="space-y-12">
+      <div class="space-y-16">
+
+        <!-- Stats Bar -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="text-center p-5 rounded-2xl bg-gradient-to-br from-purple-50 to-white border border-purple-100">
+            <div class="text-3xl font-black bg-gradient-to-r from-[#7c3aed] to-[#a855f7] bg-clip-text text-transparent">500+</div>
+            <div class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mt-1">Active Sellers</div>
+          </div>
+          <div class="text-center p-5 rounded-2xl bg-gradient-to-br from-purple-50 to-white border border-purple-100">
+            <div class="text-3xl font-black bg-gradient-to-r from-[#7c3aed] to-[#a855f7] bg-clip-text text-transparent">10K+</div>
+            <div class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mt-1">Products Listed</div>
+          </div>
+          <div class="text-center p-5 rounded-2xl bg-gradient-to-br from-purple-50 to-white border border-purple-100">
+            <div class="text-3xl font-black bg-gradient-to-r from-[#7c3aed] to-[#a855f7] bg-clip-text text-transparent">50K+</div>
+            <div class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mt-1">Happy Customers</div>
+          </div>
+          <div class="text-center p-5 rounded-2xl bg-gradient-to-br from-purple-50 to-white border border-purple-100">
+            <div class="text-3xl font-black bg-gradient-to-r from-[#7c3aed] to-[#a855f7] bg-clip-text text-transparent">64</div>
+            <div class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mt-1">Districts Covered</div>
+          </div>
+        </div>
+
+        <!-- Our Story -->
         <section>
-          <h2 class="text-gradient">Our Story</h2>
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#7c3aed] to-[#a855f7] flex items-center justify-center text-white shadow-md">
+              <i class="fas fa-book-open text-sm"></i>
+            </div>
+            <h2 class="text-gradient" style="margin:0; padding:0; background:none; border:none; border-radius:0; font-size:18px;">Our Story</h2>
+          </div>
           <p>Mamu Market was founded in 2025 with one clear mission — to build a world-class digital marketplace for Bangladesh's growing community of entrepreneurs and small business owners. We saw that thousands of talented sellers lacked the tools to reach a wider audience, and we built Mamu Market to change that.</p>
           <p>Today, Mamu Market is one of Bangladesh's fastest-growing multi-vendor platforms, connecting buyers and sellers across the country with everything from fashion and electronics to handcrafts and home goods — all in one place.</p>
         </section>
 
-
+        <!-- Our Mission -->
         <section>
-          <h2 class="text-gradient">Our Mission</h2>
-          <p>Our mission is to empower Bangladesh's small and medium entrepreneurs by connecting them to the digital economy. By removing barriers and leveraging technology, we aim to build a marketplace where every seller can grow and every buyer finds the best products at fair prices.</p>
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#7c3aed] to-[#a855f7] flex items-center justify-center text-white shadow-md">
+              <i class="fas fa-rocket text-sm"></i>
+            </div>
+            <h2 class="text-gradient" style="margin:0; padding:0; background:none; border:none; border-radius:0; font-size:18px;">Our Mission</h2>
+          </div>
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-purple-50 via-white to-purple-50/50 border border-purple-100">
+            <p class="text-[15px] leading-[1.85] text-gray-600 italic" style="margin-bottom:0;">"Our mission is to empower Bangladesh's small and medium entrepreneurs by connecting them to the digital economy. By removing barriers and leveraging technology, we aim to build a marketplace where every seller can grow and every buyer finds the best products at fair prices."</p>
+          </div>
         </section>
 
+        <!-- Our Values -->
         <section>
-          <h2 class="text-gradient">Our Values</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-            <div>
-              <h3 class="font-bold text-gray-900 mb-2">Transparency</h3>
-              <p>We believe in honest, open business practices. Our commission structure, policies, and processes are clearly communicated to every vendor and buyer on the platform.</p>
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#7c3aed] to-[#a855f7] flex items-center justify-center text-white shadow-md">
+              <i class="fas fa-gem text-sm"></i>
             </div>
-            <div>
-              <h3 class="font-bold text-gray-900 mb-2">Customer First</h3>
-              <p>Every feature we build and every decision we make centers on the customer experience. Your satisfaction is our most important metric.</p>
+            <h2 class="text-gradient" style="margin:0; padding:0; background:none; border:none; border-radius:0; font-size:18px;">Our Values</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-4">
+            <div class="p-6 rounded-2xl bg-white border border-gray-100 hover:border-purple-200 hover:shadow-lg transition-all" style="cursor:default;">
+              <div class="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+                <i class="fas fa-eye text-lg"></i>
+              </div>
+              <h3 class="font-extrabold text-gray-900 text-[15px] mb-2" style="margin-top:0;">Transparency</h3>
+              <p style="margin-bottom:0; font-size:13px;">We believe in honest, open business practices. Our commission structure, policies, and processes are clearly communicated to every vendor and buyer on the platform.</p>
             </div>
-            <div>
-              <h3 class="font-bold text-gray-900 mb-2">Empowering Sellers</h3>
-              <p>We give our merchants advanced analytics, marketing tools, and dedicated support so they can focus on what they do best — building great products.</p>
+            <div class="p-6 rounded-2xl bg-white border border-gray-100 hover:border-purple-200 hover:shadow-lg transition-all" style="cursor:default;">
+              <div class="w-11 h-11 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mb-4">
+                <i class="fas fa-heart text-lg"></i>
+              </div>
+              <h3 class="font-extrabold text-gray-900 text-[15px] mb-2" style="margin-top:0;">Customer First</h3>
+              <p style="margin-bottom:0; font-size:13px;">Every feature we build and every decision we make centers on the customer experience. Your satisfaction is our most important metric.</p>
             </div>
-            <div>
-              <h3 class="font-bold text-gray-900 mb-2">Sustainable Growth</h3>
-              <p>We are committed to building a business that lasts — one that benefits our users, our team, and the communities we serve across Bangladesh.</p>
+            <div class="p-6 rounded-2xl bg-white border border-gray-100 hover:border-purple-200 hover:shadow-lg transition-all" style="cursor:default;">
+              <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4">
+                <i class="fas fa-chart-line text-lg"></i>
+              </div>
+              <h3 class="font-extrabold text-gray-900 text-[15px] mb-2" style="margin-top:0;">Empowering Sellers</h3>
+              <p style="margin-bottom:0; font-size:13px;">We give our merchants advanced analytics, marketing tools, and dedicated support so they can focus on what they do best — building great products.</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-white border border-gray-100 hover:border-purple-200 hover:shadow-lg transition-all" style="cursor:default;">
+              <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
+                <i class="fas fa-seedling text-lg"></i>
+              </div>
+              <h3 class="font-extrabold text-gray-900 text-[15px] mb-2" style="margin-top:0;">Sustainable Growth</h3>
+              <p style="margin-bottom:0; font-size:13px;">We are committed to building a business that lasts — one that benefits our users, our team, and the communities we serve across Bangladesh.</p>
             </div>
           </div>
         </section>
 
+        <!-- Why Choose Us -->
         <section>
-          <h2 class="text-gradient">Get in Touch</h2>
-          <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mt-6 max-w-sm">
-            <div class="p-6 bg-gray-50 rounded-2xl flex items-start gap-4">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#7c3aed] to-[#a855f7] flex items-center justify-center text-white shadow-md">
+              <i class="fas fa-check-double text-sm"></i>
+            </div>
+            <h2 class="text-gradient" style="margin:0; padding:0; background:none; border:none; border-radius:0; font-size:18px;">Why Choose Mamu Market?</h2>
+          </div>
+          <ul>
+            <li>Multi-vendor marketplace with verified, trusted sellers across all 64 districts</li>
+            <li>Secure payments via bKash, Nagad, Rocket, and Cash on Delivery</li>
+            <li>Dedicated vendor dashboard with real-time analytics and inventory management</li>
+            <li>7-day hassle-free return policy on all eligible products</li>
+            <li>Priority customer support available 9 AM – 10 PM every day</li>
+          </ul>
+        </section>
+
+        <!-- Merchant Success Stories -->
+        <section>
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#7c3aed] to-[#a855f7] flex items-center justify-center text-white shadow-md">
+              <i class="fas fa-star text-sm"></i>
+            </div>
+            <h2 class="text-gradient" style="margin:0; padding:0; background:none; border:none; border-radius:0; font-size:18px;">Merchant Success Stories</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            
+            <div class="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm relative overflow-hidden group hover:border-purple-200 transition-all">
+              <div class="absolute -right-3 -top-3 text-[80px] text-purple-100/35 font-serif pointer-events-none select-none">“</div>
+              <div class="flex items-center gap-1.5 text-amber-400 mb-3.5">
+                <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
+              </div>
+              <p class="text-gray-600 text-[13.5px] leading-relaxed mb-4 relative z-10 italic">
+                "Mamu Market-এ যোগ দেওয়ার পর আমাদের কারুপণ্য বুটিকের বিক্রি দ্বিগুণ হয়ে গেছে। বিশেষ করে তাদের সহজ সেলার ড্যাশবোর্ড ও সময়মতো পেমেন্ট ক্লিয়ারেন্স আমাদের মতো মফস্বলের ছোট উদ্যোক্তাদের ব্যবসা সম্প্রসারণে অনেক সাহায্য করেছে।"
+              </p>
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-gradient-to-br from-[#7c3aed] to-[#a855f7] flex items-center justify-center text-white font-extrabold text-xs">
+                  TB
+                </div>
+                <div>
+                  <h4 class="font-extrabold text-gray-900 text-xs mb-0.5" style="margin-top:0;">Tasnim Begum</h4>
+                  <p class="text-[10px] text-[#7c3aed] font-bold leading-none mb-0">Owner, Tasnim Boutique (Rajshahi)</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm relative overflow-hidden group hover:border-purple-200 transition-all">
+              <div class="absolute -right-3 -top-3 text-[80px] text-purple-100/35 font-serif pointer-events-none select-none">“</div>
+              <div class="flex items-center gap-1.5 text-amber-400 mb-3.5">
+                <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
+              </div>
+              <p class="text-gray-600 text-[13.5px] leading-relaxed mb-4 relative z-10 italic">
+                "আগে অনলাইনের অর্ডার ম্যানেজ করা খুব কঠিন ছিল। কিন্তু Mamu Market-এর ইন্টিগ্রেটেড কুরিয়ার সার্ভিস ও অটোমেটেড স্টক ট্র্যাকিংয়ের ফলে এখন আমি একা একাই পুরো শপ পরিচালনা করতে পারছি। কাস্টমার সার্ভিসও অসাধারণ!"
+              </p>
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-gradient-to-br from-[#a855f7] to-pink-500 flex items-center justify-center text-white font-extrabold text-xs">
+                  AR
+                </div>
+                <div>
+                  <h4 class="font-extrabold text-gray-900 text-xs mb-0.5" style="margin-top:0;">Anisur Rahman</h4>
+                  <p class="text-[10px] text-[#7c3aed] font-bold leading-none mb-0">CEO, SafeTech Electronics (Dhaka)</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Get in Touch -->
+        <section>
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#7c3aed] to-[#a855f7] flex items-center justify-center text-white shadow-md">
+              <i class="fas fa-paper-plane text-sm"></i>
+            </div>
+            <h2 class="text-gradient" style="margin:0; padding:0; background:none; border:none; border-radius:0; font-size:18px;">Get in Touch</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-5 bg-gray-50 rounded-2xl flex items-start gap-4 border border-gray-100">
               <div class="w-10 h-10 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center shrink-0"><i class="fas fa-envelope"></i></div>
-              <div><p class="font-black text-gray-900 text-sm mb-1">Email</p><p class="text-sm text-gray-500">admin.mamumarket@gmail.com</p></div>
+              <div><p class="font-black text-gray-900 text-sm mb-1">Email</p><p class="text-sm text-gray-500" style="margin-bottom:0;">admin.mamumarket@gmail.com</p></div>
+            </div>
+            <div class="p-5 bg-gray-50 rounded-2xl flex items-start gap-4 border border-gray-100">
+              <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center shrink-0"><i class="fas fa-clock"></i></div>
+              <div><p class="font-black text-gray-900 text-sm mb-1">Support Hours</p><p class="text-sm text-gray-500" style="margin-bottom:0;">Every day, 9:00 AM – 10:00 PM (BST)</p></div>
             </div>
           </div>
         </section>
+
       </div>
     `
   },
